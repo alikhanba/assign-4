@@ -32,6 +32,4 @@ public class product_controller {
         inventory.addProduct(newProduct);
         return "Product added successfully!";
     }
-
-
 }

@@ -29,5 +29,15 @@ public class product_controller {
         return "Product added successfully!";
     }
 
+    @DeleteMapping("/products/delete/{name}")
+    public String deleteProduct(@PathVariable String name) {
+        boolean deleted = inventory.deleteProduct(name);
+        if (deleted) {
+            return "Product deleted successfully!";
+        }else{
+            return "Product not deleted successfully!";
+        }
+    }
+
 
 }

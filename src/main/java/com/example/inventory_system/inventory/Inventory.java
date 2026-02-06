@@ -122,15 +122,19 @@ public class Inventory {
         return products;
     }
 
-    public void deleteProduct(String nametoremove){
+    public boolean deleteProduct(String nametoremove){
         String sql = "DELETE FROM products WHERE name = ?";
         try(Connection conn = DB.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
             pstmt.setString(1, nametoremove);
+            int rowsAffected = pstmt.executeUpdate();
+            return (rowsAffected > 0);
         }catch(SQLException e){
             System.out.println("error:" + e.getMessage());
+            return false;
         }
     }
+
 
     public void adddescription(){
         String sql = "Alter TABLE products ADD Column description TEXT";
